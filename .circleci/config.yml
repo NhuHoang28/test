@@ -5,7 +5,10 @@ jobs:
     docker:
       - image: cimg/node:17.4.0
     steps:
-      - checkouts
+      - checkout
+      - run:
+          name: Update NPM
+          command: "npm install -g npm"
       - restore_cache:
           key: dependency-cache-{{ checksum "package-lock.json" }}
       - run:
